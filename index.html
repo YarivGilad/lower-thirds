@@ -1,0 +1,72 @@
+<head>
+  <title>lower-thirds</title>
+</head>
+
+<body>
+  {{> nav}}
+  <h1>Welcome to Lower Thirds!</h1>
+  {{> rooms}}
+  {{> footer}}
+  {{> loading}}
+</body>
+
+<template name="nav">
+  <div class="main nav">
+    <div class="ui inverted main menu">
+      <div class="container">
+        <div class="left menu">
+          <div class="title item">
+            <b>Startpage</b>
+          </div><a href="/" class="launch item">Home</a><a href="/contact" class=
+          "launch item">Contact</a>
+        </div>
+
+        <div class="right menu">
+          <a href="/info" class="item">Info</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="rooms">
+
+  <div class="main container">
+    <h2 class="ui dividing header">Node</h2>
+
+    <h2 class="ui dividing header">Mimosa</h2>
+
+    <h2 class="ui dividing header">Bower</h2>
+  </div>
+
+  <button>Click Me</button>
+  <p>You've pressed the button {{counter}} times.</p>
+</template>
+
+<template name="footer">
+  <div class="main footer">
+    <div class="ui divider"></div>
+
+    <div class="ui divided horizontal footer link list">
+      <div class="item">
+        satisfy
+      </div>
+
+      <div class="item">
+        v 0.1.1
+      </div>
+
+      <div class="item">
+        &copy; Anachron
+      </div><a href="https://github.com/Anachron/satisfy" class="item">Homepage</a>
+    </div>
+  </div>	
+</template>
+
+<template name="loading">
+  <div class="ui active inverted main dimmer" style="display: none;">
+    <div class="loader">
+      Loading, please wait.
+    </div>
+  </div>
+</template>
