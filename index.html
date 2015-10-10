@@ -1,13 +1,14 @@
 <head>
   <title>lower-thirds</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-  {{> nav}}
+  <!--{{> nav}}-->
   <h1>Welcome to Lower Thirds!</h1>
-  {{> rooms}}
-  {{> footer}}
-  {{> loading}}
+    {{> main}}
+    {{> footer}}
+    {{> loading}}
 </body>
 
 <template name="nav">
@@ -29,18 +30,19 @@
   </div>
 </template>
 
-<template name="rooms">
-
-  <div class="main container">
-    <h2 class="ui dividing header">Node</h2>
-
-    <h2 class="ui dividing header">Mimosa</h2>
-
-    <h2 class="ui dividing header">Bower</h2>
+<template name="main">
+{{#if loggedin}}
+hi {{userId}}
+  <nav class="ui menu">
+    <h1 class="header item">Rooms</h1>
+  </nav>
+  <div class="ui grid">
+    <div class="column">{{> itemList}}</div>
   </div>
+{{else}}
+  {{> loginButtons}} 
+{{/if}}   
 
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
 </template>
 
 <template name="footer">

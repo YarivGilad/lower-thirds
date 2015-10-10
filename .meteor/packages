@@ -22,3 +22,5 @@ semantic:ui
 flemay:less-autoprefixer
 aldeed:simple-schema
 semantic:ui-css
+accounts-ui
+accounts-password
