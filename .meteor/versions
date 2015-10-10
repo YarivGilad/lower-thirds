@@ -55,6 +55,7 @@ reload@1.1.4
 retry@1.0.4
 routepolicy@1.0.6
 semantic:ui@2.1.4_5
+semantic:ui-css@2.1.2
 semantic:ui-data@2.1.4_5
 session@1.1.1
 spacebars@1.0.7
