@@ -7,6 +7,9 @@ RoomSchema = new SimpleSchema({
  
  title : {
    type: String
+ },
+ ownerID : {
+	 type : String
  }
  
 });

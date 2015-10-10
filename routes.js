@@ -15,9 +15,7 @@ Router.route('/room/:_id', function () {
   var room = Rooms.findOne({_id: roomID});
   this.render('roomPage', {data: room});
 });
-// Router.route('/logout', function () {
-//   Meteor.logout();
-// });
+
 Router.route('logout', {
         path: '/logout',
         onBeforeAction: [function() {
@@ -25,3 +23,8 @@ Router.route('logout', {
         }],
         waitOn: function() { return Meteor.logout()}
     });
+
+// Router.route('/room/:id/slots/:id', function () {
+//   var slot = Slots.findOne();
+//   this.render('slot', {data: slot});
+// });
