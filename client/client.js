@@ -25,7 +25,7 @@ Meteor.startup(function () {
   });
   Template.main.helpers({
     rooms : function() {
-      return Rooms.find();//.fetch();
+      return Rooms.find({}, {sort: {updatedAt: -1}});//.fetch();
     },
     userID : function() {
     	//var user = 
@@ -34,13 +34,13 @@ Meteor.startup(function () {
   });
   Template.room.helpers({
   	slots : function() {
-      return Slots.find({roomID:this._id});
+      return Slots.find({roomID:this._id}, {sort: {updatedAt: -1}});
     }
 
   });
   Template.roomPage.helpers({
   	slots : function() {
-      return Slots.find({roomID:this._id});
+      return Slots.find({roomID:this._id}, {sort: {updatedAt: -1}});
     }
 
   });
