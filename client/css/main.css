@@ -1,1 +1,50 @@
 /* CSS declarations go here */
+#login-buttons {
+  display: table;
+  margin: 10vw auto;
+  vertical-align: middle;
+  font-size: large;
+}
+#login-buttons .login-button {
+  line-height: 3 !important;
+  font-size: x-large !important;
+}
+#login-buttons .login-image {
+    display: inline-block;
+    position: absolute;
+    left: 4rem;
+    top: 6rem;
+    width: 10rem;
+    height: 10rem;
+    background-size: 10rem;
+}
+#login-dropdown-list {
+  margin: auto;
+  vertical-align: middle;
+  position: relative;
+  top: initial;
+  left: initial;
+  font-size: large;
+}
+#login-sign-in-link{
+  display: none;
+}
+.login-close-text {
+  display: none;
+}
+.accounts-dialog {
+  display: table;
+  width: auto;
+}
+.accounts-dialog * {
+  padding: 0;
+  margin: 0;
+  line-height: 1.6;
+  color: inherit;
+  font: inherit;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.accounts-dialog > * {
+  line-height: 2;
+  font-size: x-large;
+}
