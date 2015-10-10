@@ -19,7 +19,7 @@ Router.route('/room/:_id', function () {
 Router.route('logout', {
         path: '/logout',
         onBeforeAction: [function() {
-            this.route('/');
+            this.redirect('/');
         }],
         waitOn: function() { return Meteor.logout()}
     });
