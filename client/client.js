@@ -23,6 +23,31 @@ Meteor.startup(function () {
       $("#login-sign-in-link").click();
     }
   });
+  Template.main.helpers({
+    rooms : function() {
+      return Rooms.find();//.fetch();
+    },
+    userID : function() {
+    	//var user = 
+    	return Meteor.user().emails[0].address.split('@')[0].replace('.',' ') || Meteor.userId();
+    }
+  });
+  Template.room.helpers({
+  	slots : function() {
+      return Slots.find({roomID:this._id});
+    }
+
+  });
+  Template.roomPage.helpers({
+  	slots : function() {
+      return Slots.find({roomID:this._id});
+    }
+
+  });
+
+/*
+Rooms.upsert(Rooms.findOne({'title':'Room 2'})._id,{title:'Room 2',slots:[{name:'Slot 1',main_text:'Main',secondary_text:'Bla Bla',editorID:Meteor.userId(),isPlaying:false,isEdited:false}]})
+*/
 //*******
   // counter starts at 0
   // Session.setDefault('counter', 0);

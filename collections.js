@@ -5,9 +5,6 @@ Rooms = new Mongo.Collection("Rooms");
 
 RoomSchema = new SimpleSchema({
  
- slots: {
-   	  type: [String]
- },
  title : {
    type: String
  }
@@ -21,6 +18,9 @@ Slots = new Mongo.Collection("Slots");
 
 SlotSchema = new SimpleSchema(
 { 
+  roomID: {
+   	  type: String
+ },
  name: {
    	  type: String
  },
@@ -31,10 +31,18 @@ SlotSchema = new SimpleSchema(
    type: String
  },
  isPlaying : {
-	 type : Boolean
+    type: Boolean,
+    defaultValue: false//,
+    // autoform: {
+    //   type: 'toggle'
+    // }
  },
  isEdited : {
-	 type : Boolean
+	type : Boolean,
+    defaultValue: false//,
+    // autoform: {
+    //   type: 'toggle'
+    // }
  },
  editorID : {
 	 type : String

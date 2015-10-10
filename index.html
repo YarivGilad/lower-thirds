@@ -1,18 +1,15 @@
 <head>
   <title>lower-thirds</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
 </head>
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 6f879cbf4c3313a945f238083b324a69440d27c4
+<body>
+  
+</body>
 <template name="app">
-  <!--{{> nav}}-->
-  <h1>Welcome to Lower Thirds!</h1>
-    {{> main}}
-    {{> footer}}
-    {{> loading}}
+  {{> nav}}
+  {{> main}}
+  <!--   {{> footer}} -->
+  <!--   {{> loading}} -->
 </template>
 
 <template name="nav">
@@ -21,7 +18,7 @@
       <div class="container">
         <div class="left menu">
           <div class="title item">
-            <b>Startpage</b>
+            <b>Lower Thirds</b>
           </div><a href="/" class="launch item">Home</a><a href="/contact" class=
           "launch item">Contact</a>
         </div>
@@ -29,27 +26,160 @@
         <div class="right menu">
           <a href="/info" class="item">Info</a>
         </div>
+        {{#if currentUser}}
+        <div class="ui right item">
+          <a href="/logout">logout</a>
+        </div>
+        {{/if}}
       </div>
     </div>
   </div>
 </template>
 
 <template name="main">
-{{#if loggedin}}
-hi {{userId}}
+{{#if currentUser}}
+<div class="ui raised very padded  container segment">
+  <div class="ui statistic">
+    <div class="label">Hi {{userID}}, you have </div>
+    <div class="value">&nbsp;</div>
+  </div>
+  <div class="ui right floated statistic">
+    <div class="value">
+      {{rooms.count}}
+    </div>
+    <div class="label">
+      Rooms
+    </div>
+  </div>
+  <!-- <nav class="ui menu"> -->
+    
+  <!-- </nav> -->
+  <div class="ui cards">
+    {{#each rooms}}
+      {{> room}}
+    {{/each}}            
+  </div>
+</div>
+{{else}}
+  <h1 class="ui header">Welcome to Lower Thirds!</h1>
+  {{> loginButtons}} 
+{{/if}}   
+</template>
+<template name="room">
+  <a class="ui card" href="/room/:{{_id}}">
+    <div class="content">
+      {{#if slots.count}}
+        <a class="ui green right ribbon label">{{slots.count}} Slots</a>         
+      {{else}}
+        <a class="ui grey right ribbon label">No slots</a>
+      {{/if}}
+
+      <div class="header">{{title}}</div>
+    </div>
+    <div class="content">some data on this room
+      <!-- <div class="ui small feed">
+        <div class="event">
+          <div class="content">
+            <div class="summary">
+               <a>Elliot Fu</a> added <a>Jenny Hess</a> to the project
+            </div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="content">
+            <div class="summary">
+               <a>Stevie Feliciano</a> was added as an <a>Administrator</a>
+            </div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="content">
+            <div class="summary">
+               <a>Helen Troy</a> added two pictures
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+    <div class="extra content">
+      <a class="ui button" href="/room/:{{_id}}">Enter Room</a>
+    </div>
+  </a>
+</template>
+<template name="roomPage">
+{{#if currentUser}}
+<div class="ui raised very padded  container segment">
+    <a class="ui labeled icon button" href="/">
+      <i class="left arrow icon"></i>
+      Back
+    </a>
+    <p></p>
+  <div class="ui statistic">
+    <div class="label">{{title}} </div>
+    <div class="value">&nbsp;</div>
+  </div>
+  <div class="ui right floated statistic">
+    <div class="value">
+      {{slots.count}}
+    </div>
+    <div class="label">
+      Slots
+    </div>
+  </div>
+  <!-- <nav class="ui menu"> -->
+    
+  <!-- </nav> -->
+  <div class="ui cards">
+    {{#each slots}}
+      {{> slot}}
+    {{/each}}            
+  </div>
+</div>
+{{else}}
+  {{> loginButtons}} 
+{{/if}}   
+</template>
+<template name="slot">
+  <a class="ui card" href="/room/:{{roomID}}/slot/:{{_id}}">
+    <div class="content">
+      <div class="header">{{name}}</div>
+    </div>
+    <div class="content">
+      <div class="ui small feed">
+        <div class="event">
+          <div class="content">
+            <div class="summary">{{main_text}}
+               <!-- <a>Elliot Fu</a> added <a>Jenny Hess</a> to the project -->
+            </div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="content">
+            <div class="summary">{{secondary_text}}
+               <!-- <a>Stevie Feliciano</a> was added as an <a>Administrator</a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="extra content">
+     isPlaying: {{#if isPlaying}}<i class="checkmark icon"></i>{{else}}<i class="remove icon"></i>{{/if}},
+     isEdited: {{#if isEdited}}<i class="checkmark icon"></i>{{else}}<i class="remove icon"></i>{{/if}}
+     <p></p>
+      <button class="ui button">Open Slot</button>
+    </div>
+  </a>
+  
+</template>
+<!-- <template name="slots">
   <nav class="ui menu">
-    <h1 class="header item">Rooms</h1>
+    <h1 class="header item">Slots</h1>
   </nav>
   <div class="ui grid">
     <div class="column">{{> itemList}}</div>
   </div>
-{{else}}
-  {{> loginButtons}} 
-{{/if}}   
-
-</template>
-
-<template name="footer">
+</template> -->
+<!-- <template name="footer">
   <div class="main footer">
     <div class="ui divider"></div>
 
@@ -66,7 +196,7 @@ hi {{userId}}
         &copy; Anachron
       </div><a href="https://github.com/Anachron/satisfy" class="item">Homepage</a>
     </div>
-  </div>	
+  </div>  
 </template>
 
 <template name="loading">
@@ -76,3 +206,4 @@ hi {{userId}}
     </div>
   </div>
 </template>
+ -->
