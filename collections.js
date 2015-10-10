@@ -3,7 +3,7 @@
 //---------
 Rooms = new Mongo.Collection("Rooms");
 
-Rooms.attachSchema(new SimpleSchema({
+RoomSchema = new SimpleSchema({
  
  slots: {
    	  type: [String]
@@ -12,14 +12,15 @@ Rooms.attachSchema(new SimpleSchema({
    type: String
  }
  
-}));
+});
+//Rooms.attachSchema ???
 //---------
 //  Slots
 //---------
 Slots = new Mongo.Collection("Slots");
 
-Slots.attachSchema(new SimpleSchema({
- 
+SlotSchema = new SimpleSchema(
+{ 
  name: {
    	  type: String
  },
@@ -38,7 +39,8 @@ Slots.attachSchema(new SimpleSchema({
  editorID : {
 	 type : String
  },
- animation : {
+ animation : 
+ {	type: {
 	 enter : {
 		 animType : {
 			 type:String
@@ -72,6 +74,7 @@ Slots.attachSchema(new SimpleSchema({
 			 type : String
 		 }
 	 }
+	}
  }
  
-}));
+});

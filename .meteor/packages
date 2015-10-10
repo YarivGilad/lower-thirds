@@ -20,8 +20,8 @@ autopublish             # Publish all data to the clients (for prototyping)
 insecure                # Allow all DB writes from clients (for prototyping)
 semantic:ui
 flemay:less-autoprefixer
-aldeed:simple-schema
 semantic:ui-css
 accounts-ui
 accounts-password
+aldeed:simple-schema
 iron:router
