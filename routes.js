@@ -7,7 +7,7 @@ Router.route('/', function () {
 //   this.render('user', {data: item});
 // });
 Router.route('/rooms', function () {
-  var rooms = Items.find();
+  var rooms = Rooms.find();
   this.render('rooms', {data: rooms});
 });
 Router.route('/room/:_id', function () {
