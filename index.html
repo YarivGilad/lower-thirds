@@ -4,12 +4,16 @@
 </head>
 
 <body>
+  {{> app}}
+</body>
+
+<template name="app">
   <!--{{> nav}}-->
   <h1>Welcome to Lower Thirds!</h1>
     {{> main}}
     {{> footer}}
     {{> loading}}
-</body>
+</template>
 
 <template name="nav">
   <div class="main nav">
