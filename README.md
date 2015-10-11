@@ -1,2 +1,2 @@
 # lower-thirds
-Overlay broadcast oriented infographics
+Overlay broadcast oriented infographics editing
