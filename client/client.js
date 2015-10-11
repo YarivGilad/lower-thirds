@@ -16,7 +16,10 @@ Meteor.startup(function () {
     Accounts._loginButtonsSession.set('dropdownVisible', true);
     Session.set("Meteor.loginButtons.dropdownVisible",true);
   });
-
+  Template.roomPage.onRendered(function() {
+  	  $('.ui.embed').embed();
+  });
+  
   Template.loginButtons.events({
     ready : function(){
       console.log("login button="+$("#login-sign-in-link"));

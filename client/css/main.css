@@ -1,3 +1,50 @@
 .ui.cards > .card {
     margin-right: 1em;
 }
+
+.ui.cards > .card.center 
+{
+	align-items: center;
+    justify-content: center;
+}
+
+.ui.cards > .card.center > .buttons, 
+.ui.card.center > .buttons, 
+.ui.cards > .card.center > .button, 
+.ui.card.center > .button {
+    margin: 0px -1px;
+    width: auto;
+}
+
+.ui.cards > .card > .button.circular, 
+.ui.card > .button.circular {
+    border-radius: 10em !important;
+}
+.ui.segments:not(.horizontal) >
+.ui.yellow.segment:not(.inverted) {
+    border-top: 1px solid rgba(34, 36, 38, 0.15);
+}
+.ui.segments:not(.horizontal) >
+.ui.yellow.segment:not(.inverted) {
+    border-left: 2px solid #fbbd08;
+}
+
+.ui.label > .icon:only-child {
+    margin-right: 0em;
+}
+
+.ui.compact.segments
+{
+    float: left;
+    margin-right: 1em;
+    margin-top: 0em;	
+}
+.shadow {
+    box-shadow: 0px 1px 3px 0px #d4d4d5, 0px 0px 0px 1px #d4d4d5;	
+}
+.ui.segments > .segment.center 
+{
+	align-items: center;
+    justify-content: center;
+    display: inline-flex;
+}

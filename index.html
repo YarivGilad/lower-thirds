@@ -38,12 +38,13 @@
 
 <template name="main">
 {{#if currentUser}}
-<div class="ui raised very padded  container segment">
-  <div class="ui statistic">
-    <div class="label">Hi {{userID}}, you have </div>
-    <div class="value">&nbsp;</div>
-  </div>
-  <div class="ui right floated statistic">
+<div class="ui container">
+  <p></p>
+<!--   <a class="ui labeled icon button" href="/">
+    <i class="left arrow icon"></i>
+    Back
+  </a> -->
+  <div class="ui right floated horizontal statistic">
     <div class="value">
       {{rooms.count}}
     </div>
@@ -51,13 +52,21 @@
       Rooms
     </div>
   </div>
-  <!-- <nav class="ui menu"> -->
-    
-  <!-- </nav> -->
+  <div class="ui statistic">
+    <div class="label">Hi {{userID}}, you have </div>
+  </div>
+</div>
+  <p>&nbsp;</p>
+<div class="ui raised very padded  container segment">
   <div class="ui cards">
     {{#each rooms}}
       {{> room}}
-    {{/each}}            
+    {{/each}}
+    <a class="ui card center" href="/room/new">
+      <button class="circular ui icon orange button">
+        <i class="icon plus"></i>
+      </button>
+    </a>
   </div>
 </div>
 {{else}}
@@ -66,7 +75,7 @@
 {{/if}}   
 </template>
 <template name="room">
-  <a class="ui card" href="/room/:{{_id}}">
+  <a class="ui card {{#if slots.count}}green{{/if}}" href="/room/:{{_id}}">
     <div class="content">
       {{#if slots.count}}
         <a class="ui green right ribbon label">{{slots.count}} Slots</a>         
@@ -77,29 +86,6 @@
       <div class="header">{{title}}</div>
     </div>
     <div class="content">some data on this room
-      <!-- <div class="ui small feed">
-        <div class="event">
-          <div class="content">
-            <div class="summary">
-               <a>Elliot Fu</a> added <a>Jenny Hess</a> to the project
-            </div>
-          </div>
-        </div>
-        <div class="event">
-          <div class="content">
-            <div class="summary">
-               <a>Stevie Feliciano</a> was added as an <a>Administrator</a>
-            </div>
-          </div>
-        </div>
-        <div class="event">
-          <div class="content">
-            <div class="summary">
-               <a>Helen Troy</a> added two pictures
-            </div>
-          </div>
-        </div>
-      </div> -->
     </div>
     <div class="extra content">
       <a class="ui button" href="/room/:{{_id}}">Enter Room</a>
@@ -108,17 +94,13 @@
 </template>
 <template name="roomPage">
 {{#if currentUser}}
-<div class="ui raised very padded  container segment">
-    <a class="ui labeled icon button" href="/">
-      <i class="left arrow icon"></i>
-      Back
-    </a>
-    <p></p>
-  <div class="ui statistic">
-    <div class="label">{{title}} </div>
-    <div class="value">&nbsp;</div>
-  </div>
-  <div class="ui right floated statistic">
+<div class="ui container">
+  <p></p>
+  <a class="ui labeled icon button" href="/">
+    <i class="left arrow icon"></i>
+    Back
+  </a>
+  <div class="ui right floated horizontal statistic">
     <div class="value">
       {{slots.count}}
     </div>
@@ -126,13 +108,27 @@
       Slots
     </div>
   </div>
-  <!-- <nav class="ui menu"> -->
-    
-  <!-- </nav> -->
-  <div class="ui cards">
+  <div class="ui statistic">
+    <div class="label">{{title}} </div>
+  </div>
+</div>
+
+<div class="ui raised very padded  container segment">
+  <div class="ui compact clearing segments">
     {{#each slots}}
       {{> slot}}
     {{/each}}            
+    <a class="ui segment center" href="/slot/new">
+      <button class="circular ui icon orange button">
+        <i class="icon plus"></i>
+      </button>
+    </a>
+  </div>
+
+  <div class="ui container">
+    {{#if slots.count}}
+    <div class="ui embed shadow" data-source="youtube" data-id="hgjyr6BPAtA" ></div>
+    {{/if}}
   </div>
 </div>
 {{else}}
@@ -140,45 +136,58 @@
 {{/if}}   
 </template>
 <template name="slot">
-  <a class="ui card" href="/room/:{{roomID}}/slot/:{{_id}}">
-    <div class="content">
-      <div class="header">{{name}}</div>
-    </div>
-    <div class="content">
-      <div class="ui small feed">
-        <div class="event">
-          <div class="content">
-            <div class="summary">{{main_text}}
-               <!-- <a>Elliot Fu</a> added <a>Jenny Hess</a> to the project -->
-            </div>
-          </div>
+   <div class="ui segment {{#if isEdited}}disabled{{/if}} {{#if isPlaying}}yellow{{/if}}">
+    {{#if isEdited}}
+      <div class="ui corner left label mini"><i class="lock icon"></i></div>
+    {{/if}}
+    
+    {{name}}
+
+    {{#if isEdited}}
+    {{else}}
+      <div class="ui right floated icon button circular tiny">
+      {{#if isPlaying}}
+        <i class="stop icon"></i>
+      {{else}}
+        <i class="play icon"></i>
+      {{/if}}
+      </div>
+    {{/if}}
+  </div>
+</template>
+<template name="slotAsItem">
+    <div class="item {{#if isEdited}}disabled{{/if}} {{#if isPlaying}}yellow{{/if}}">
+      {{#if isEdited}}
+        <div class="ui corner left label mini"><i class="lock icon"></i></div>
+      {{/if}}
+      <div class="ui small image">
+        {{name}}
+      </div>
+      <div class="middle aligned content">
+        <div class="header">
+          {{main_text}}
         </div>
-        <div class="event">
-          <div class="content">
-            <div class="summary">{{secondary_text}}
-               <!-- <a>Stevie Feliciano</a> was added as an <a>Administrator</a> -->
+        <div class="description">
+          <p>{{secondary_text}}</p>
+        </div>
+        <div class="extra">
+          <!-- <div class="ui right floated button">
+            Action
+          </div> -->
+          {{#if isEdited}}
+          {{else}}
+            <div class="ui right floated icon button circular tiny">
+            {{#if isPlaying}}
+              <i class="stop icon"></i>
+            {{else}}
+              <i class="play icon"></i>
+            {{/if}}
             </div>
-          </div>
+          {{/if}}          
         </div>
       </div>
     </div>
-    <div class="extra content">
-     isPlaying: {{#if isPlaying}}<i class="checkmark icon"></i>{{else}}<i class="remove icon"></i>{{/if}},
-     isEdited: {{#if isEdited}}<i class="checkmark icon"></i>{{else}}<i class="remove icon"></i>{{/if}}
-     <p></p>
-      <button class="ui button">Open Slot</button>
-    </div>
-  </a>
-  
 </template>
-<!-- <template name="slots">
-  <nav class="ui menu">
-    <h1 class="header item">Slots</h1>
-  </nav>
-  <div class="ui grid">
-    <div class="column">{{> itemList}}</div>
-  </div>
-</template> -->
 <!-- <template name="footer">
   <div class="main footer">
     <div class="ui divider"></div>
