@@ -1,3 +1,6 @@
+.ui.cards {
+	justify-content: space-between;
+}
 .ui.cards > .card {
     margin-right: 1em;
 }
@@ -37,7 +40,8 @@
 {
     float: left;
     margin-right: 1em;
-    margin-top: 0em;	
+    margin-top: 0em;
+    min-width: 20%;
 }
 .shadow {
     box-shadow: 0px 1px 3px 0px #d4d4d5, 0px 0px 0px 1px #d4d4d5;	
@@ -47,4 +51,9 @@
 	align-items: center;
     justify-content: center;
     display: inline-flex;
+}
+.logo > img
+{
+	border-radius: .25em;
+	margin-right: 1em !important;
 }

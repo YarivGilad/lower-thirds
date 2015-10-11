@@ -1,6 +1,13 @@
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Ilana Hakim">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
   <title>lower-thirds</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
 </head>
 <body>
   
@@ -13,37 +20,23 @@
 </template>
 
 <template name="nav">
-  <div class="main nav">
-    <div class="ui inverted main menu">
-      <div class="container">
-        <div class="left menu">
-          <div class="title item">
-            <b>Lower Thirds</b>
-          </div><a href="/" class="launch item">Home</a><a href="/contact" class=
-          "launch item">Contact</a>
-        </div>
-
-        <div class="right menu">
-          <a href="/info" class="item">Info</a>
-        </div>
-        {{#if currentUser}}
-        <div class="ui right item">
-          <a href="/logout">logout</a>
-        </div>
-        {{/if}}
-      </div>
-    </div>
+<div class="ui inverted main menu">
+  <div class="item logo">
+    <img src="/LowerThirdsLogo.png">
+    Lower Thirds
   </div>
+  {{#if currentUser}}
+    <div class="ui right dropdown item">
+      <a href="/logout">Logout</a>
+    </div>
+  {{/if}}
+</div> 
 </template>
 
 <template name="main">
 {{#if currentUser}}
 <div class="ui container">
   <p></p>
-<!--   <a class="ui labeled icon button" href="/">
-    <i class="left arrow icon"></i>
-    Back
-  </a> -->
   <div class="ui right floated horizontal statistic">
     <div class="value">
       {{rooms.count}}
@@ -62,8 +55,8 @@
     {{#each rooms}}
       {{> room}}
     {{/each}}
-    <a class="ui card center" href="/room/new">
-      <button class="circular ui icon orange button">
+    <a class="ui card center" href="/room/new" style="min-height: 7em;">
+      <button class="circular ui icon teal button">
         <i class="icon plus"></i>
       </button>
     </a>
@@ -74,11 +67,12 @@
   {{> loginButtons}} 
 {{/if}}   
 </template>
+
 <template name="room">
-  <a class="ui card {{#if slots.count}}green{{/if}}" href="/room/:{{_id}}">
+  <a class="ui card {{#if slots.count}}olive{{/if}}" href="/room/:{{_id}}">
     <div class="content">
       {{#if slots.count}}
-        <a class="ui green right ribbon label">{{slots.count}} Slots</a>         
+        <a class="ui olive right ribbon label">{{slots.count}} Slots</a>         
       {{else}}
         <a class="ui grey right ribbon label">No slots</a>
       {{/if}}
@@ -92,14 +86,18 @@
     </div>
   </a>
 </template>
+
 <template name="roomPage">
+  {{> nav}}
 {{#if currentUser}}
-<div class="ui container">
+<div class="ui container" style="display:table;">
   <p></p>
-  <a class="ui labeled icon button" href="/">
+  <div class="ui basic mini buttons">
+  <a class="ui button" href="/">
     <i class="left arrow icon"></i>
     Back
   </a>
+  </div>
   <div class="ui right floated horizontal statistic">
     <div class="value">
       {{slots.count}}
@@ -113,28 +111,29 @@
   </div>
 </div>
 
-<div class="ui raised very padded  container segment">
+<div class="ui raised padded  container segment">
   <div class="ui compact clearing segments">
     {{#each slots}}
       {{> slot}}
     {{/each}}            
     <a class="ui segment center" href="/slot/new">
-      <button class="circular ui icon orange button">
+      <button class="circular ui icon teal button">
         <i class="icon plus"></i>
       </button>
     </a>
   </div>
 
   <div class="ui container">
-    {{#if slots.count}}
+    <!-- {{#if slots.count}} -->
     <div class="ui embed shadow" data-source="youtube" data-id="hgjyr6BPAtA" ></div>
-    {{/if}}
+    <!-- {{/if}} -->
   </div>
 </div>
 {{else}}
   {{> loginButtons}} 
 {{/if}}   
 </template>
+
 <template name="slot">
    <div class="ui segment {{#if isEdited}}disabled{{/if}} {{#if isPlaying}}yellow{{/if}}">
     {{#if isEdited}}
@@ -155,6 +154,7 @@
     {{/if}}
   </div>
 </template>
+
 <template name="slotAsItem">
     <div class="item {{#if isEdited}}disabled{{/if}} {{#if isPlaying}}yellow{{/if}}">
       {{#if isEdited}}
